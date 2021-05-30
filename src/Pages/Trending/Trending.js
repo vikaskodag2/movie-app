@@ -7,8 +7,9 @@ import CustomPagination from "../../components/Pagination";
 import "./Trending.css";
 
 const Trending = () => {
-  const [content, setContent] = useState({});
+  const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
+  const [numOfPages, setNumOfPages] = useState(1);
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -16,7 +17,8 @@ const Trending = () => {
         `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
       );
 
-      setContent(data);
+      setContent(data?.results || []);
+      setNumOfPages(data?.total_pages || 1);
     };
 
     fetchTrending();
@@ -27,8 +29,7 @@ const Trending = () => {
       <span className="pageTitle">Trending</span>
       <div className="trendingContent">
         {content &&
-          content.results &&
-          content.results.map((movie) => (
+          content.map((movie) => (
             <MovieCard
               key={movie.id}
               id={movie.id}
@@ -40,11 +41,14 @@ const Trending = () => {
             />
           ))}
       </div>
-      <CustomPagination
-        totalPages={content.total_pages}
-        setPage={setPage}
-        curPage={page}
-      />
+
+      {numOfPages > 1 && (
+        <CustomPagination
+          totalPages={numOfPages}
+          setPage={setPage}
+          curPage={page}
+        />
+      )}
     </div>
   );
 };
