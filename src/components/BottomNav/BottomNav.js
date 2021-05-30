@@ -10,7 +10,7 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
+    width: "100%",
     position: "fixed",
     bottom: 0,
     backgroundColor: "#2d313a",
