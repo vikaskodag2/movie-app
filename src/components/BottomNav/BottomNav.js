@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import TvIcon from "@material-ui/icons/Tv";
@@ -9,7 +10,7 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
+    width: "100%",
     position: "fixed",
     bottom: 0,
     backgroundColor: "#2d313a",
@@ -20,6 +21,14 @@ const useStyles = makeStyles({
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (value === 0) history.push("/");
+    if (value === 1) history.push("/movies");
+    if (value === 2) history.push("/series");
+    if (value === 3) history.push("/search");
+  }, [value, history]);
 
   return (
     <BottomNavigation

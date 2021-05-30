@@ -4,10 +4,10 @@ import { Container } from "@material-ui/core";
 
 import Header from "./components/Header";
 import BottomNav from "./components/BottomNav";
-import Trending from "./components/Pages/Trending";
-import Series from "./components/Pages/Series";
-import Search from "./components/Pages/Search";
-import Movies from "./components/Pages/Movies";
+import Trending from "./Pages/Trending";
+import Series from "./Pages/Series";
+import Search from "./Pages/Search";
+import Movies from "./Pages/Movies";
 
 import "./App.css";
 
